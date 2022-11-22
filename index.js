@@ -2,6 +2,13 @@ import { catsData } from "./data.js";
 
 const emotionsRadioDiv = document.getElementById("emotion-radios");
 
+emotionsRadioDiv.addEventListener("change", highlightCheckedOption);
+
+function highlightCheckedOption(e) {
+  document.getElementById(e.target.id).parentElement.classList.remove("highlight");
+  document.getElementById(e.target.id).parentElement.classList.add("highlight");
+}
+
 function getEmotionsArray(cats) {
   const emotionsArray = [];
   for (let cat of cats) {
