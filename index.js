@@ -2,15 +2,20 @@ import { catsData } from "./data.js";
 
 const emotionsRadioDiv = document.getElementById("emotion-radios");
 const imageBtnEl = document.querySelector("#get-image-btn");
+const gifsOnlyOption = document.getElementById("gifs-only-option");
 
 emotionsRadioDiv.addEventListener("change", highlightCheckedOption);
 
 imageBtnEl.addEventListener("click", getMatchingCatsArray);
 
 function getMatchingCatsArray() {
-  const selectedEmotion = document.querySelector('input[type="radio"]:checked').value;
-  if (selectedEmotion !== null) {
-    console.log(selectedEmotion);
+  if (document.querySelector('input[type="radio"]:checked')) {
+    const isGif = gifsOnlyOption.checked;
+    const selectedEmotion = document.querySelector('input[type="radio"]:checked').value;
+    const matchingCatsArray = catsData.filter(function (cat) {
+      return cat.emotionTags.includes(selectedEmotion) && cat.isGif === isGif;
+    });
+    console.log(matchingCatsArray);
   }
 
 }
