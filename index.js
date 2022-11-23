@@ -21,8 +21,8 @@ function getMatchingCatsArray() {
         return cat.emotionTags.includes(selectedEmotion);
       }
     });
+    return matchingCatsArray;
   }
-  return matchingCatsArray;
 }
 
 function highlightCheckedOption(e) {
