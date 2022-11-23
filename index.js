@@ -11,13 +11,18 @@ imageBtnEl.addEventListener("click", getMatchingCatsArray);
 function getMatchingCatsArray() {
   if (document.querySelector('input[type="radio"]:checked')) {
     const isGif = gifsOnlyOption.checked;
-    const selectedEmotion = document.querySelector('input[type="radio"]:checked').value;
+    const selectedEmotion = document.querySelector(
+      'input[type="radio"]:checked'
+    ).value;
     const matchingCatsArray = catsData.filter(function (cat) {
-      return cat.emotionTags.includes(selectedEmotion) && cat.isGif === isGif;
+      if (isGif) {
+        return cat.emotionTags.includes(selectedEmotion) && cat.isGif;
+      } else {
+        return cat.emotionTags.includes(selectedEmotion);
+      }
     });
-    console.log(matchingCatsArray);
   }
-
+  return matchingCatsArray;
 }
 
 function highlightCheckedOption(e) {
